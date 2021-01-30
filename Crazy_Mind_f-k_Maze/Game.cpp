@@ -23,6 +23,20 @@ Game::Game() :
 	}
 
 	m_bgSprite.setTexture(m_bgTexture);
+	RoomSize = 600.0f;
+	outlineThickness = 25;
+	RoomOne.setFillColor(sf::Color::Transparent);
+	RoomOne.setSize({ RoomSize, RoomSize });
+	RoomOne.setOutlineThickness(outlineThickness);
+	RoomOne.setOutlineColor(sf::Color::White);
+
+	RoomOne.setOrigin({ RoomOne.getPosition().x + RoomOne.getGlobalBounds().width / 2 - outlineThickness,
+						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
+
+	RoomOne.setPosition(m_renderWin.getSize().x / 2,
+						m_renderWin.getSize().y / 2);
+
+	view.setCenter(RoomOne.getPosition());
 }
 
 /// Destructor
@@ -82,6 +96,9 @@ void Game::processInput()
 		}
 		m_player.processEvents(event);
 	}	
+	}
+	
+	
 }
 
 // Updates Game
@@ -89,6 +106,11 @@ void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
 	m_player.update(t_deltaTime);
+
+	view.setRotation(view.getRotation() + 1.0f);
+
+	m_player.update(t_deltaTime);
+
 }
 
 // Renders
@@ -97,6 +119,13 @@ void Game::render()
 	m_renderWin.clear();
 	m_renderWin.draw(m_bgSprite);
 	m_player.draw(m_renderWin);
+
+	// Kiernens Camera and Room
+	m_renderWin.setView(view);
+	m_renderWin.draw(RoomOne);
+
+	m_player.draw(m_renderWin);
+
 	m_renderWin.display();
 }
 

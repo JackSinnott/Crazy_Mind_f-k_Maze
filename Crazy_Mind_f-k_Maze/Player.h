@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "Levels/LevelLoader.h"
 
+
 class Player
 {
 public:
@@ -15,6 +16,7 @@ public:
 	void processEvents(sf::Event t_event);
 
 	void setUpSprites();
+
 private:
 	sf::RectangleShape m_shape;
 	sf::Vector2f m_movement;

@@ -5,7 +5,7 @@ Player::Player() : m_speed{75}
 	m_shape.setSize(sf::Vector2f(50, 50));
 	m_shape.setFillColor(sf::Color::Red);
 	m_shape.setPosition(sf::Vector2f(300, 500));
-
+  
 	int currentLevel = 1;
 	try
 	{
@@ -54,6 +54,7 @@ void Player::processEvents(sf::Event t_event)
 	m_manager.update(t_event);
 }
 
+
 void Player::setUpSprites()
 {
 	if (!m_playerTexture.loadFromFile(m_level.m_background.m_fileName))
@@ -67,3 +68,4 @@ void Player::setUpSprites()
 	m_playerSprite.setOrigin(m_playerFrame.width / 2, m_playerFrame.height / 2);
 	m_playerSprite.setScale(1.0f, 1.0f);
 }
+
