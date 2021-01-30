@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Xbox360Controller.h"
 class InputManager
 {
 private:
@@ -10,6 +11,8 @@ private:
 	bool m_moveDown;
 	bool m_moveLeft;
 	bool m_moveRight;
+
+	Xbox360Controller controller;
 public:
 	/// <summary>
 	/// each of these functions just returns the correspondin member variable of the class
