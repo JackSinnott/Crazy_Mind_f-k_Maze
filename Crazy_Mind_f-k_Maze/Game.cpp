@@ -96,10 +96,8 @@ void Game::processInput()
 		}
 		m_player.processEvents(event);
 	}	
-	}
-	
-	
 }
+
 
 // Updates Game
 void Game::update(sf::Time t_deltaTime)
@@ -107,7 +105,7 @@ void Game::update(sf::Time t_deltaTime)
 	m_gameControllerPad.update();
 	m_player.update(t_deltaTime);
 
-	view.setRotation(view.getRotation() + 1.0f);
+	//view.setRotation(view.getRotation() + 1.0f);
 
 	m_player.update(t_deltaTime);
 

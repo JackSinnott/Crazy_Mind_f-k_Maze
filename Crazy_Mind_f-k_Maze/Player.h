@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "InputManager.h"
 #include "Levels/LevelLoader.h"
+#include "AnimatedSprite.h"
 
 
 class Player
@@ -18,17 +19,19 @@ public:
 	void setUpSprites();
 
 private:
-	sf::RectangleShape m_shape;
+	//sf::RectangleShape m_shape;
 	sf::Vector2f m_movement;
 
 	// To store the game level data.
 	LevelData m_level;
 
 	// Player image 
-	sf::Sprite m_playerSprite;
+	AnimatedSprite m_playerSprite;
 	sf::Texture m_playerTexture;
 
-	sf::IntRect m_playerFrame;
+	Animation idle;
+	Animation jump;
+	Animation run;
 
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_position;
