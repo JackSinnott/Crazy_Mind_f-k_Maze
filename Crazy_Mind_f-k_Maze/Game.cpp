@@ -52,6 +52,7 @@ void Game::run()
 void Game::processInput()
 {
 	sf::Event event;
+	
 	while (m_renderWin.pollEvent(event))
 	{
 		if (sf::Event::Closed == event.type)
@@ -74,14 +75,21 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
+		m_player.processEvents(event);
 	}
+	
+	
 }
 
 // Updates Game
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
+
 	view.setRotation(view.getRotation() + 1.0f);
+
+	m_player.update(t_deltaTime);
+
 }
 
 // Renders
@@ -92,6 +100,8 @@ void Game::render()
 	// Kiernens Camera and Room
 	m_renderWin.setView(view);
 	m_renderWin.draw(RoomOne);
+
+	m_player.draw(m_renderWin);
 
 	m_renderWin.display();
 }
