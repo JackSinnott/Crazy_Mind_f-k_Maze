@@ -39,6 +39,7 @@ void Game::run()
 void Game::processInput()
 {
 	sf::Event event;
+	
 	while (m_renderWin.pollEvent(event))
 	{
 		if (sf::Event::Closed == event.type)
@@ -61,21 +62,24 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
+		m_player.processEvents(event);
 	}
+	
+	
 }
 
 // Updates Game
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
-
+	m_player.update(t_deltaTime);
 }
 
 // Renders
 void Game::render()
 {
 	m_renderWin.clear();
-
+	m_player.draw(m_renderWin);
 	m_renderWin.display();
 }
 
