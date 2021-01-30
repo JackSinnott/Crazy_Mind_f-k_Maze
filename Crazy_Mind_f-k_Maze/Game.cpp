@@ -4,7 +4,20 @@
 Game::Game() :
 	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
+	RoomSize = 600.0f;
+	outlineThickness = 25;
+	RoomOne.setFillColor(sf::Color::Transparent);
+	RoomOne.setSize({ RoomSize, RoomSize });
+	RoomOne.setOutlineThickness(outlineThickness);
+	RoomOne.setOutlineColor(sf::Color::White);
 
+	RoomOne.setOrigin({ RoomOne.getPosition().x + RoomOne.getGlobalBounds().width / 2 - outlineThickness,
+						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
+
+	RoomOne.setPosition(m_renderWin.getSize().x / 2,
+						m_renderWin.getSize().y / 2);
+
+	view.setCenter(RoomOne.getPosition());
 }
 
 /// Destructor
@@ -68,13 +81,17 @@ void Game::processInput()
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
-
+	view.setRotation(view.getRotation() + 1.0f);
 }
 
 // Renders
 void Game::render()
 {
 	m_renderWin.clear();
+
+	// Kiernens Camera and Room
+	m_renderWin.setView(view);
+	m_renderWin.draw(RoomOne);
 
 	m_renderWin.display();
 }

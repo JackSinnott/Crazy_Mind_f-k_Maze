@@ -28,6 +28,11 @@ protected:
 	sf::RenderWindow m_renderWin;
 	Xbox360Controller m_gameControllerPad;
 
+	sf::RectangleShape RoomOne;
+	float RoomSize;
+	int outlineThickness;
+
+	sf::View view;
 };
 
 
