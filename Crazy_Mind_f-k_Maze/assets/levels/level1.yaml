@@ -1,9 +1,5 @@
 background:
-   texture: # texture for level
-   tileLayout:
-   roomWidth: # how many tiles along the X axis
-   roomHeight: # how many tiles along Y axis
-   tileSize:
+   file: ./assets/BasicTilemap.png # Sample comment
+player:
+   position: {x: 400, y: 400}
 
-key:
-   
