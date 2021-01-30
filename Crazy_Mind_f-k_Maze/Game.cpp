@@ -62,8 +62,9 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
+		m_player.processEvents(event);
 	}
-	m_player.processEvents(event);
+	
 	
 }
 

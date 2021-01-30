@@ -16,22 +16,22 @@ void Player::update(sf::Time t_deltaTime)
 {
 	if (m_manager.shouldMoveUp())
 	{
-		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(0.0f, 10.0f));
+		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(0.0f, -2.0f));
 	}
 
 	if (m_manager.shouldMoveDown())
 	{
-		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(0.0f, -10.0f));
+		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(0.0f, 2.0f));
 	}
 
 	if (m_manager.shouldMoveLeft())
 	{
-		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(-10.0f, 0.0f));
+		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(-2.0f, 0.0f));
 	}
 
 	if (m_manager.shouldMoveRight())
 	{
-		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(10.0f, 0.0f));
+		m_shape.setPosition(m_shape.getPosition() + sf::Vector2f(2.0f, 0.0f));
 	}
 }
 
