@@ -1,0 +1,9 @@
+background:
+   texture: # texture for level
+   tileLayout:
+   roomWidth: # how many tiles along the X axis
+   roomHeight: # how many tiles along Y axis
+   tileSize:
+
+key:
+   
