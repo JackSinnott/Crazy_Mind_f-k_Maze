@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Xbox360Controller.h"
 class InputManager
 {
 private:
@@ -10,6 +11,14 @@ private:
 	bool m_moveDown;
 	bool m_moveLeft;
 	bool m_moveRight;
+	bool m_rotateLeft;
+	bool m_rotateRight;
+	bool m_jumping;
+
+	Xbox360Controller controller;
+	int playersYPos = 300; // PLACEHOLDER - please find a way to add the players current y position here!
+
+	int floor = 300; // PLACEHOLDER - please change so floor is for each level!!
 public:
 	/// <summary>
 	/// each of these functions just returns the correspondin member variable of the class
