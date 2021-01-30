@@ -3,11 +3,15 @@
 
 
 #include <iostream>
+#include <vector>
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
+#include "Levels/LevelLoader.h"
 
 #include "MyVector3.h"
 #include "Xbox360Controller.h"
+
+#include "Player.h"
 
 class Game
 {
@@ -17,7 +21,6 @@ public:
 
 	void run();
 
-
 protected:
 
 	void intialize();
@@ -25,9 +28,20 @@ protected:
 	void processInput();
 	void render();
 
+	// Background image 
+	sf::Sprite m_bgSprite;
+	sf::Texture m_bgTexture;
+
+	std::vector<sf::Sprite> m_floorSprites;
+	sf::Sprite floorSprite;
+
+	// To store the game level data.
+	LevelData m_level;
+
 	sf::RenderWindow m_renderWin;
 	Xbox360Controller m_gameControllerPad;
 
+	Player m_player;
 };
 
 

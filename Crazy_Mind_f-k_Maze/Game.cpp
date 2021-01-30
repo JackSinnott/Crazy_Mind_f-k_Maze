@@ -4,7 +4,25 @@
 Game::Game() :
 	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
+	int currentLevel = 1;
 
+	try
+	{
+		LevelLoader::load(currentLevel, m_level);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Level Loading failure." << std::endl;
+		std::cout << e.what() << std::endl;
+		throw e;
+	}
+
+	if (!m_bgTexture.loadFromFile(m_level.m_background.m_fileName))
+	{
+		std::cout << "Error loading background image" << std::endl;
+	}
+
+	m_bgSprite.setTexture(m_bgTexture);
 }
 
 /// Destructor
@@ -39,6 +57,7 @@ void Game::run()
 void Game::processInput()
 {
 	sf::Event event;
+	
 	while (m_renderWin.pollEvent(event))
 	{
 		if (sf::Event::Closed == event.type)
@@ -61,21 +80,23 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
-	}
+		m_player.processEvents(event);
+	}	
 }
 
 // Updates Game
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
-
+	m_player.update(t_deltaTime);
 }
 
 // Renders
 void Game::render()
 {
 	m_renderWin.clear();
-
+	m_renderWin.draw(m_bgSprite);
+	m_player.draw(m_renderWin);
 	m_renderWin.display();
 }
 

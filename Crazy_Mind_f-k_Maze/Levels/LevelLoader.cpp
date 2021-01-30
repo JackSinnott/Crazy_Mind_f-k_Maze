@@ -12,9 +12,22 @@
 ////////////////////////////////////////////////////////////
 void operator >> (const YAML::Node& t_backgroundNode, BackgroundData& t_background)
 {
-	t_background.keyTexture = t_backgroundNode["gameplay"].as<std::string>();
-	t_background.backgroundTexture = t_backgroundNode["target"].as<std::string>();
+	t_background.m_fileName = t_backgroundNode["tileFile"].as<std::string>();
 }
+
+
+/// <summary>
+/// @brief Extracts the filename for the game background texture.
+/// 
+/// </summary>
+/// <param name="t_backgroundNode">A YAML node</param>
+/// <param name="t_background">A simple struct to store background related data</param>
+////////////////////////////////////////////////////////////
+void operator >> (const YAML::Node& t_playerNode, PlayerData& t_player)
+{
+	t_player.m_fileName = t_playerNode["playerFile"].as<std::string>();
+}
+
 
 /// <summary>
 /// @brief Top level function that extracts various game data from the YAML data stucture.
@@ -27,20 +40,24 @@ void operator >> (const YAML::Node& t_backgroundNode, BackgroundData& t_backgrou
 ////////////////////////////////////////////////////////////
 void operator >> (const YAML::Node& t_levelNode, LevelData& t_level)
 {
-	t_levelNode["background"] >> t_level.m_background;
+	t_levelNode["images"] >> t_level.m_background;
+	t_levelNode["images"] >> t_level.m_player;
 }
 
 ////////////////////////////////////////////////////////////
 void LevelLoader::load(int t_levelNr, LevelData& t_level)
 {
-	std::string filename = "./resources/levels/level" + std::to_string(t_levelNr) + ".yaml";
+	std::stringstream ss;
+	ss << "./assets/levels/level";
+	ss << t_levelNr;
+	ss << ".yaml";
 
 	try
 	{
-		YAML::Node baseNode = YAML::LoadFile(filename);
+		YAML::Node baseNode = YAML::LoadFile(ss.str());
 		if (baseNode.IsNull())
 		{
-			std::string message("File: " + filename + " not found");
+			std::string message("File: " + ss.str() + " not found");
 			throw std::exception(message.c_str());
 		}
 		baseNode >> t_level;

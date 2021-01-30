@@ -2,6 +2,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <sstream>
 #include <fstream>
 #include <iostream>
 #include "yaml-cpp\yaml.h"
@@ -12,11 +13,16 @@
 /// </summary>
 struct BackgroundData
 {
-	std::string keyTexture;
-	std::string backgroundTexture;
-	// key texture
-	// background texture
-	// 
+	std::string m_fileName;
+};
+
+/// <summary>
+/// @brief A struct to store Player texture information.
+/// 
+/// </summary>
+struct PlayerData
+{
+	std::string m_fileName;
 };
 
 /// <summary>
@@ -27,6 +33,7 @@ struct BackgroundData
 struct LevelData
 {
 	BackgroundData m_background;
+	PlayerData m_player;
 };
 
 /// <summary>

@@ -6,6 +6,10 @@ Key::Key(sf::Vector2f location)
 	keyBody.setPosition(location);
 }
 
+void Key::load(sf::Texture& texture)
+{
+}
+
 void Key::gotPickedUp()
 {
 	playerFoundIt = true;
