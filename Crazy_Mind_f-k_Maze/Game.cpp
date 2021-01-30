@@ -4,6 +4,25 @@
 Game::Game() :
 	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
+	int currentLevel = 1;
+
+	try
+	{
+		LevelLoader::load(currentLevel, m_level);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Level Loading failure." << std::endl;
+		std::cout << e.what() << std::endl;
+		throw e;
+	}
+
+	if (!m_bgTexture.loadFromFile(m_level.m_background.m_fileName))
+	{
+		std::cout << "Error loading background image" << std::endl;
+	}
+
+	m_bgSprite.setTexture(m_bgTexture);
 	RoomSize = 600.0f;
 	outlineThickness = 25;
 	RoomOne.setFillColor(sf::Color::Transparent);
@@ -76,6 +95,7 @@ void Game::processInput()
 		{
 		}
 		m_player.processEvents(event);
+	}	
 	}
 	
 	
@@ -85,6 +105,7 @@ void Game::processInput()
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
+	m_player.update(t_deltaTime);
 
 	view.setRotation(view.getRotation() + 1.0f);
 
@@ -96,6 +117,8 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_renderWin.clear();
+	m_renderWin.draw(m_bgSprite);
+	m_player.draw(m_renderWin);
 
 	// Kiernens Camera and Room
 	m_renderWin.setView(view);

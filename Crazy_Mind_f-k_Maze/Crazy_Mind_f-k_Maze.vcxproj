@@ -146,6 +146,10 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Levels\BaseLevel.cpp" />
+    <ClCompile Include="Levels\Key.cpp" />
+    <ClCompile Include="Levels\LevelLoader.cpp" />
+    <ClCompile Include="Levels\TileMap.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyVector3.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -155,11 +159,18 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Levels\BaseLevel.h" />
+    <ClInclude Include="Levels\Key.h" />
+    <ClInclude Include="Levels\LevelLoader.h" />
+    <ClInclude Include="Levels\TileMap.h" />
     <ClInclude Include="MyVector3.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="tinyc2.h" />
     <ClInclude Include="Xbox360Controller.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\levels\level1.yaml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
