@@ -16,6 +16,24 @@
     <Filter Include="Header Files\Resource Management">
       <UniqueIdentifier>{111faea3-4ca1-4ee8-af43-fa01c7853d67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ltbl">
+      <UniqueIdentifier>{ae5c5fde-be27-47e6-8a3f-f3ac99bd15c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ltbl\quadtree">
+      <UniqueIdentifier>{4c2f7ce4-9e82-4f8c-b986-300814dfd0af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ltbl\lighting">
+      <UniqueIdentifier>{c215e3cc-91e9-40ee-b6c2-01200c72fe0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ltbl">
+      <UniqueIdentifier>{e5fc60be-8eee-444e-ab17-fa8742622af0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ltbl\quadtree">
+      <UniqueIdentifier>{759c47e3-1e5b-46ba-b04d-f2d3f429becb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ltbl\lighting">
+      <UniqueIdentifier>{3f4501fb-9156-4946-bfd5-aa5eb245961d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,6 +57,33 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\Math.cpp">
+      <Filter>Source Files\ltbl</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\DynamicQuadtree.cpp">
+      <Filter>Source Files\ltbl\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\Quadtree.cpp">
+      <Filter>Source Files\ltbl\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\QuadtreeNode.cpp">
+      <Filter>Source Files\ltbl\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\QuadtreeOccupant.cpp">
+      <Filter>Source Files\ltbl\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\StaticQuadtree.cpp">
+      <Filter>Source Files\ltbl\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightDirectionEmission.cpp">
+      <Filter>Source Files\ltbl\lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightPointEmission.cpp">
+      <Filter>Source Files\ltbl\lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightSystem.cpp">
+      <Filter>Source Files\ltbl\lighting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -61,6 +106,36 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\Math.h">
+      <Filter>Header Files\ltbl</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightDirectionEmission.h">
+      <Filter>Header Files\ltbl\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightPointEmission.h">
+      <Filter>Header Files\ltbl\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightShape.h">
+      <Filter>Header Files\ltbl\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightSystem.h">
+      <Filter>Header Files\ltbl\lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\DynamicQuadtree.h">
+      <Filter>Header Files\ltbl\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\Quadtree.h">
+      <Filter>Header Files\ltbl\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\QuadtreeNode.h">
+      <Filter>Header Files\ltbl\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\QuadtreeOccupant.h">
+      <Filter>Header Files\ltbl\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\StaticQuadtree.h">
+      <Filter>Header Files\ltbl\quadtree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

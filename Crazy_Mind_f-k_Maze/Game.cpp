@@ -4,20 +4,7 @@
 Game::Game() :
 	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
-	RoomSize = 600.0f;
-	outlineThickness = 25;
-	RoomOne.setFillColor(sf::Color::Transparent);
-	RoomOne.setSize({ RoomSize, RoomSize });
-	RoomOne.setOutlineThickness(outlineThickness);
-	RoomOne.setOutlineColor(sf::Color::White);
-
-	RoomOne.setOrigin({ RoomOne.getPosition().x + RoomOne.getGlobalBounds().width / 2 - outlineThickness,
-						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
-
-	RoomOne.setPosition(m_renderWin.getSize().x / 2,
-						m_renderWin.getSize().y / 2);
-
-	view.setCenter(RoomOne.getPosition());
+	intialize();	
 }
 
 /// Destructor
@@ -100,12 +87,59 @@ void Game::render()
 	// Kiernens Camera and Room
 	m_renderWin.setView(view);
 	m_renderWin.draw(RoomOne);
-
 	m_player.draw(m_renderWin);
+	ls.render(view, unshadowShader, lightOverShapeShader);
 
 	m_renderWin.display();
 }
 
 void Game::intialize()
 {
+	center = sf::Vector2f{ m_renderWin.getSize().x / 2.0f,	m_renderWin.getSize().y / 2.0f };
+	RoomSize = 600.0f;
+	outlineThickness = 25;
+	RoomOne.setFillColor(sf::Color::Transparent);
+	RoomOne.setSize({ RoomSize, RoomSize });
+	RoomOne.setOutlineThickness(outlineThickness);
+	RoomOne.setOutlineColor(sf::Color::White);
+
+	RoomOne.setOrigin({ RoomOne.getPosition().x + RoomOne.getGlobalBounds().width / 2 - outlineThickness,
+						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
+
+	RoomOne.setPosition(center);
+
+	view.setCenter(RoomOne.getPosition());
+}
+
+void Game::shaderSetUp()
+{
+	if (!unshadowShader.loadFromFile("resources/unshadowShader.vert", "resources/unshadowShader.frag"))
+	{
+		std::cout << "Shit dont work" << std::endl;
+	}
+
+	if(!lightOverShapeShader.loadFromFile("resources/lightOverShapeShader.vert", "resources/lightOverShapeShader.frag"))
+	{
+		std::cout << "Other shit dont work" << std::endl;
+	}
+
+	penumbraTexture.loadFromFile("resources / penumbraTexture.png");
+	penumbraTexture.setSmooth(true);
+	penumbraSprite.setTexture(penumbraTexture);
+	penumbraSprite.setPosition(center);
+
+	Point.loadFromFile("ASSETS/Images/Point_Light.png");
+	Point.setSmooth(true);
+
+	ls.create(sf::FloatRect(-1000.0f, -1000.0f, 1000.0f, 1000.0f), m_renderWin.getSize(), penumbraTexture, unshadowShader, lightOverShapeShader);
+
+	light->emissionSprite.setOrigin(RoomOne.getPosition().x - RoomOne.getGlobalBounds().width / 0.7f,
+									RoomOne.getPosition().y - RoomOne.getGlobalBounds().height / 0.7f);
+
+	light->emissionSprite.setTexture(Point);
+	light->emissionSprite.setColor(sf::Color::White);
+	light->emissionSprite.setPosition(center);
+	light->localCastCenter = sf::Vector2f(0.0f, 0.0f);
+
+	ls.addLight(light);
 }

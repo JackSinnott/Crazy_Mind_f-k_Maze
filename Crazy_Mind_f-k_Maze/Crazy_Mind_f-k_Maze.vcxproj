@@ -146,6 +146,15 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightDirectionEmission.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightPointEmission.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\lighting\LightSystem.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\Math.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\DynamicQuadtree.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\Quadtree.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\QuadtreeNode.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\QuadtreeOccupant.cpp" />
+    <ClCompile Include="LTBL2\source\ltbl\quadtree\StaticQuadtree.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyVector3.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -155,6 +164,16 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightDirectionEmission.h" />
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightPointEmission.h" />
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightShape.h" />
+    <ClInclude Include="LTBL2\source\ltbl\lighting\LightSystem.h" />
+    <ClInclude Include="LTBL2\source\ltbl\Math.h" />
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\DynamicQuadtree.h" />
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\Quadtree.h" />
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\QuadtreeNode.h" />
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\QuadtreeOccupant.h" />
+    <ClInclude Include="LTBL2\source\ltbl\quadtree\StaticQuadtree.h" />
     <ClInclude Include="MyVector3.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
