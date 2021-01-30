@@ -9,6 +9,8 @@
 #include "MyVector3.h"
 #include "Xbox360Controller.h"
 
+#include "Player.h"
+
 class Game
 {
 public:
@@ -28,6 +30,7 @@ protected:
 	sf::RenderWindow m_renderWin;
 	Xbox360Controller m_gameControllerPad;
 
+	Player m_player;
 };
 
 
