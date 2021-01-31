@@ -2,7 +2,7 @@
 
 // Contructor
 Game::Game() :
-	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
+	m_renderWin{ sf::VideoMode{ 800, 800, 1 }, "Crazy_Maze" }
 {
 	int currentLevel = 1;
 
@@ -23,6 +23,14 @@ Game::Game() :
 	}
 
 	m_bgSprite.setTexture(m_bgTexture);
+
+	m_bgSprite.setOrigin(m_bgSprite.getGlobalBounds().width / 2, m_bgSprite.getGlobalBounds().height / 2);
+
+	m_bgSprite.setPosition(m_renderWin.getSize().x / 2,
+		m_renderWin.getSize().y / 2);
+
+	m_bgSprite.setScale(1.7, 1.7);
+
 	RoomSize = 600.0f;
 	outlineThickness = 25;
 	RoomOne.setFillColor(sf::Color::Transparent);
@@ -36,7 +44,7 @@ Game::Game() :
 	RoomOne.setPosition(m_renderWin.getSize().x / 2,
 		m_renderWin.getSize().y / 2);
 
-	view.setCenter(RoomOne.getPosition());
+	view.setCenter(m_bgSprite.getPosition());
 }
 
 /// Destructor
@@ -115,12 +123,12 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_renderWin.clear();
-	m_renderWin.draw(m_bgSprite);
 	m_player.draw(m_renderWin);
 
 	// Kiernens Camera and Room
 	m_renderWin.setView(view);
-	m_renderWin.draw(RoomOne);
+	m_renderWin.draw(m_bgSprite);
+	//m_renderWin.draw(RoomOne);
 
 	m_player.draw(m_renderWin);
 
