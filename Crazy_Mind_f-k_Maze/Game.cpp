@@ -2,7 +2,7 @@
 
 // Contructor
 Game::Game() :
-	m_renderWin{ sf::VideoMode{ 800, 800, 1 }, "Crazy_Maze" }
+	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
 	int currentLevel = 1;
 
@@ -23,14 +23,6 @@ Game::Game() :
 	}
 
 	m_bgSprite.setTexture(m_bgTexture);
-
-	m_bgSprite.setOrigin(m_bgSprite.getGlobalBounds().width / 2, m_bgSprite.getGlobalBounds().height / 2);
-
-	m_bgSprite.setPosition(m_renderWin.getSize().x / 2,
-		m_renderWin.getSize().y / 2);
-
-	m_bgSprite.setScale(1.7, 1.7);
-
 	RoomSize = 600.0f;
 	outlineThickness = 25;
 	RoomOne.setFillColor(sf::Color::Transparent);
@@ -42,9 +34,9 @@ Game::Game() :
 						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
 
 	RoomOne.setPosition(m_renderWin.getSize().x / 2,
-		m_renderWin.getSize().y / 2);
+						m_renderWin.getSize().y / 2);
 
-	view.setCenter(m_bgSprite.getPosition());
+	view.setCenter(RoomOne.getPosition());
 }
 
 /// Destructor
@@ -79,7 +71,7 @@ void Game::run()
 void Game::processInput()
 {
 	sf::Event event;
-
+	
 	while (m_renderWin.pollEvent(event))
 	{
 		if (sf::Event::Closed == event.type)
@@ -102,8 +94,7 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
-		m_player.processEvents(event);
-	}
+	}	
 }
 
 
@@ -111,11 +102,10 @@ void Game::processInput()
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
-	m_player.update(t_deltaTime);
 
-	view.setRotation(view.getRotation() + 1.0f);
+	//view.setRotation(view.getRotation() + 1.0f);
 
-	m_player.update(t_deltaTime);
+	m_player.update(t_deltaTime, &m_gameControllerPad);
 
 }
 
@@ -123,12 +113,12 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_renderWin.clear();
+	m_renderWin.draw(m_bgSprite);
 	m_player.draw(m_renderWin);
 
 	// Kiernens Camera and Room
 	m_renderWin.setView(view);
-	m_renderWin.draw(m_bgSprite);
-	//m_renderWin.draw(RoomOne);
+	m_renderWin.draw(RoomOne);
 
 	m_player.draw(m_renderWin);
 

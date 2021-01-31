@@ -28,6 +28,7 @@ public:
 	bool shouldMoveDown();
 	bool shouldMoveLeft();
 	bool shouldMoveRight();
+	bool shouldJump();
 	/// <summary>
 	/// checks for keypresses and updates if the player should move in any of the directions
 	/// </summary>
