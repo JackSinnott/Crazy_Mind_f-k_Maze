@@ -20,23 +20,23 @@
 
 struct GamePadState
 {
-	bool a;
-	bool b;
-	bool x;
-	bool y;
-	bool leftB;
-	bool rightB;
-	bool leftThumbStickClick;
-	bool rightThumbStickClick;
-	bool dPadUp;
-	bool dPadDown;
-	bool dPadLeft;
-	bool dPadRight;
-	bool start;
-	bool back;
-	bool xbox;
-	float rTrigger;
-	float lTrigger;
+	bool a = false;
+	bool b = false;
+	bool x = false;
+	bool y = false;
+	bool leftB = false;
+	bool rightB = false;
+	bool leftThumbStickClick = false;
+	bool rightThumbStickClick = false;
+	bool dPadUp = false;
+	bool dPadDown = false;
+	bool dPadLeft = false;
+	bool dPadRight = false;
+	bool start = false;
+	bool back = false;
+	bool xbox = false;
+	float rTrigger = false;
+	float lTrigger = false;
 	sf::Vector2f rightThumbStick;
 	sf::Vector2f leftThumbStick;
 };

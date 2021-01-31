@@ -9,7 +9,6 @@
 #include "Levels/LevelLoader.h"
 
 #include "MyVector3.h"
-#include "Xbox360Controller.h"
 
 #include "Player.h"
 
@@ -39,7 +38,6 @@ protected:
 	LevelData m_level;
 
 	sf::RenderWindow m_renderWin;
-	Xbox360Controller m_gameControllerPad;
 
 	sf::RectangleShape RoomOne;
 	float RoomSize;

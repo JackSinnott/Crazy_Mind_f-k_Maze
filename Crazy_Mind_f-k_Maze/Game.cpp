@@ -1,6 +1,6 @@
 #include "Game.h"
-
 // Contructor
+
 Game::Game() :
 	m_renderWin{ sf::VideoMode{ 768, 768, 1 }, "Crazy_Maze" }
 {
@@ -102,7 +102,6 @@ void Game::processInput()
 // Updates Game
 void Game::update(sf::Time t_deltaTime)
 {
-	m_gameControllerPad.update();
 	m_player.update(t_deltaTime);
 
 	//view.setRotation(view.getRotation() + 1.0f);

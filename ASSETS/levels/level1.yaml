@@ -1,0 +1,5 @@
+images:
+   tileFile: ./assets/BasicTilemap.png # Load Tile image files
+   playerFile: ./assets/PlayerSpriteSheet/hero_spritesheet.png # Load Player image file
+player:
+   position: {x: 400, y: 400}
