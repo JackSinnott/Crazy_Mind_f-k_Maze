@@ -22,6 +22,12 @@
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{c6221887-f718-43fa-a81d-5b63983c4835}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{b97cbb3f-7d5a-4b85-8892-d4237ab3a4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{553ed435-6645-4add-8573-05933356d5aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -57,6 +63,12 @@
     <ClCompile Include="Levels\TileMap.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -91,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="Levels\TileMap.h">
       <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

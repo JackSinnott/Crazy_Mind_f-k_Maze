@@ -20,6 +20,11 @@ bool InputManager::shouldMoveRight()
 	return m_moveRight;
 }
 
+bool InputManager::shouldJump()
+{
+	return m_jumping;
+}
+
 void InputManager::update(sf::Event& t_event)
 {
 	controller.update(); 
@@ -43,7 +48,7 @@ void InputManager::update(sf::Event& t_event)
 		(t_event.key.code == sf::Keyboard::E));
 
 	m_jumping = (controller.m_currentState.a || (t_event.KeyPressed &&
-		(t_event.key.code == sf::Keyboard::Space))) && ! m_jumping;
+		(t_event.key.code == sf::Keyboard::Space))) && !m_jumping;
 
 	if (m_jumping)
 	{
@@ -109,10 +114,10 @@ void InputManager::update(sf::Event& t_event)
 		m_rotateRight = false;
 	}
 
-	if (playersYPos <= floor)
-	{
-		m_jumping = false;
-	}
+	//if (playersYPos <= floor)
+	//{
+	//	m_jumping = false;
+	//}
 }
 
 InputManager::InputManager() : m_moveDown{ false },

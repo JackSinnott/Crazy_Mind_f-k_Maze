@@ -34,7 +34,7 @@ Game::Game() :
 						RoomOne.getPosition().y + RoomOne.getGlobalBounds().height / 2 - outlineThickness });
 
 	RoomOne.setPosition(m_renderWin.getSize().x / 2,
-		m_renderWin.getSize().y / 2);
+						m_renderWin.getSize().y / 2);
 
 	view.setCenter(RoomOne.getPosition());
 }
@@ -71,7 +71,7 @@ void Game::run()
 void Game::processInput()
 {
 	sf::Event event;
-
+	
 	while (m_renderWin.pollEvent(event))
 	{
 		if (sf::Event::Closed == event.type)
@@ -94,8 +94,7 @@ void Game::processInput()
 		if (event.type == sf::Event::MouseButtonReleased)
 		{
 		}
-		m_player.processEvents(event);
-	}
+	}	
 }
 
 
@@ -103,11 +102,10 @@ void Game::processInput()
 void Game::update(sf::Time t_deltaTime)
 {
 	m_gameControllerPad.update();
-	m_player.update(t_deltaTime);
 
-	view.setRotation(view.getRotation() + 1.0f);
+	//view.setRotation(view.getRotation() + 1.0f);
 
-	m_player.update(t_deltaTime);
+	m_player.update(t_deltaTime, &m_gameControllerPad);
 
 }
 
