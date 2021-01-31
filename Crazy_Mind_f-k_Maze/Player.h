@@ -38,6 +38,7 @@ private:
 	Animation idle;
 	Animation jump;
 	Animation run;
+	Animation land;
 
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_position;

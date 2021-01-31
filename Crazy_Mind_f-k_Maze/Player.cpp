@@ -30,77 +30,29 @@ void Player::draw(sf::RenderWindow& t_window)
 void Player::update(sf::Time t_deltaTime, Xbox360Controller* t_cont)
 {
 	m_position = m_playerSprite.getPosition();
+	m_playerSprite.update(t_deltaTime);
+	checkInput(t_cont);
 
-	/*if (m_manager.shouldJump() && 
-		m_playerSprite.getAnimation()->getFrame(0) != jump.getFrame(0))
+	if (m_position.y < 200)
 	{
-		m_playerSprite.setAnimation(jump);
+		m_velocity = sf::Vector2f(0,1);
+	}
+
+	else if (m_position.y > 500 && m_playerSprite.getAnimation()->getFrame(0) == jump.getFrame(0))
+	{
+		m_velocity = sf::Vector2f(0, 0);
+		m_playerSprite.setAnimation(land);
+		m_playerSprite.setFrameTime(sf::seconds(0.1));
 		m_playerSprite.play();
-		m_playerSprite.setLooped(false);
 	}
 
-	else if (m_manager.shouldMoveUp())
-	{
-		m_playerSprite.setPosition(m_position + sf::Vector2f(0.0f, -2.0f));
-
-		if (m_playerSprite.getAnimation()->getFrame(0) == idle.getFrame(0))
-		{
-			m_playerSprite.setAnimation(run);
-			m_playerSprite.play();
-			m_playerSprite.setLooped(true);
-		}
-	}
-
-	else if (m_manager.shouldMoveDown())
-	{
-		m_playerSprite.setPosition(m_position + sf::Vector2f(0.0f, 2.0f));
-
-		if (m_playerSprite.getAnimation()->getFrame(0) == idle.getFrame(0))
-		{
-			m_playerSprite.setAnimation(run);
-			m_playerSprite.play();
-			m_playerSprite.setLooped(true);
-		}
-	}
-
-	else if (m_manager.shouldMoveLeft())
-	{
-		m_playerSprite.setScale(4.0f, 4.0f);
-		m_playerSprite.setPosition(m_position + sf::Vector2f(-2.0f, 0.0f));
-
-		if (m_playerSprite.getAnimation()->getFrame(0) == idle.getFrame(0))
-		{
-			m_playerSprite.setAnimation(run);
-			m_playerSprite.play();
-			m_playerSprite.setLooped(true);
-		}
-	}
-
-	else if (m_manager.shouldMoveRight())
-	{
-		m_playerSprite.setScale(-4.0f, 4.0f);
-		m_playerSprite.setPosition(m_position + sf::Vector2f(2.0f, 0.0f));
-
-		if (m_playerSprite.getAnimation()->getFrame(0) == idle.getFrame(0))
-		{
-			m_playerSprite.setAnimation(run);
-			m_playerSprite.play();
-			m_playerSprite.setLooped(true);
-		}
-	}
-
-	else if (m_playerSprite.getAnimation()->getFrame(0) != idle.getFrame(0) && 
-		m_playerSprite.getAnimation()->getFrame(0) != jump.getFrame(0))
+	if (!m_playerSprite.isPlaying() && m_playerSprite.getAnimation()->getFrame(0) == land.getFrame(0))
 	{
 		m_playerSprite.setAnimation(idle);
 		m_playerSprite.play();
 		m_playerSprite.setLooped(true);
-	}*/
-
-	m_playerSprite.setPosition(m_position);
-	checkInput(t_cont);
-
-	
+		m_playerSprite.setFrameTime(sf::seconds(0.2));
+	}
 }
 
 
@@ -123,17 +75,22 @@ void Player::setUpSprites()
 	run.addFrame(sf::IntRect(69, 64, 20, 31));
 	run.addFrame(sf::IntRect(101, 64, 20, 31));
 
-	jump.addFrame(sf::IntRect(197, 0, 20, 31));
 	jump.addFrame(sf::IntRect(165, 0, 20, 31));
 	jump.addFrame(sf::IntRect(133, 0, 20, 31));
 	jump.addFrame(sf::IntRect(101, 0, 20, 31));
-	jump.addFrame(sf::IntRect(69, 0, 20, 31));
 	jump.addFrame(sf::IntRect(37, 0, 20, 31));
 	jump.addFrame(sf::IntRect(5, 0, 20, 31));
+
+	land.addFrame(sf::IntRect(37, 0, 20, 31));
+	land.addFrame(sf::IntRect(101, 0, 20, 31));
+	land.addFrame(sf::IntRect(133, 0, 20, 31));
+	land.addFrame(sf::IntRect(165, 0, 20, 31));
+	land.addFrame(sf::IntRect(197, 0, 20, 31));
 
 	idle.setSpriteSheet(m_playerTexture);
 	run.setSpriteSheet(m_playerTexture);
 	jump.setSpriteSheet(m_playerTexture);
+	land.setSpriteSheet(m_playerTexture);
 	
 	m_playerSprite.setAnimation(idle);
 	m_playerSprite.setPosition(m_position);
@@ -147,7 +104,6 @@ void Player::checkInput(Xbox360Controller* t_cont)
 {
 	if (t_cont->m_currentState.dPadRight == true || t_cont->m_currentState.leftThumbStick.x > 50 || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-
 		m_playerSprite.setScale(-4.0f, 4.0f);
 		m_playerSprite.setPosition(m_position + sf::Vector2f(2.0f, 0.0f));
 
@@ -156,9 +112,10 @@ void Player::checkInput(Xbox360Controller* t_cont)
 			m_playerSprite.setAnimation(run);
 			m_playerSprite.play();
 			m_playerSprite.setLooped(true);
+			m_playerSprite.setFrameTime(sf::seconds(0.2));
 		}
 	}
-	if (t_cont->m_currentState.dPadLeft == true || t_cont->m_currentState.leftThumbStick.x < -50 || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (t_cont->m_currentState.dPadLeft == true || t_cont->m_currentState.leftThumbStick.x < -50 || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
 		m_playerSprite.setScale(4.0f, 4.0f);
@@ -169,14 +126,32 @@ void Player::checkInput(Xbox360Controller* t_cont)
 			m_playerSprite.setAnimation(run);
 			m_playerSprite.play();
 			m_playerSprite.setLooped(true);
+			m_playerSprite.setFrameTime(sf::seconds(0.2));
 		}
 	}
 
-	if (t_cont->m_currentState.a == true && t_cont->m_previousState.a != true || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	else if (t_cont->m_currentState.a == true && t_cont->m_previousState.a != true || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		m_velocity = m_velocity + sf::Vector2f(0, -500);
+		m_velocity = m_velocity + sf::Vector2f(0, -1);
+
+		if (m_playerSprite.getAnimation()->getFrame(0) != jump.getFrame(0))
+		{
+			m_playerSprite.setAnimation(jump);
+			m_playerSprite.play();
+			m_playerSprite.setFrameTime(sf::seconds(0.05));
+			m_playerSprite.setLooped(false);
+		}
 
 	}
+
+	else if (m_playerSprite.getAnimation()->getFrame(0) == run.getFrame(0))
+	{
+		m_playerSprite.setAnimation(idle);
+		m_playerSprite.play();
+		m_playerSprite.setLooped(true);
+		m_playerSprite.setFrameTime(sf::seconds(0.2));
+	}
+
 	if (t_cont->m_currentState.rTrigger > 50 && t_cont->m_previousState.rTrigger < 50 || sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
 		// insert rotation code	
@@ -185,6 +160,9 @@ void Player::checkInput(Xbox360Controller* t_cont)
 	{
 		//insert rotation code
 	}
+
+	m_position = m_playerSprite.getPosition();
+	m_playerSprite.setPosition(m_position + m_velocity);
 	t_cont->m_previousState = t_cont->m_currentState;
 }
 
